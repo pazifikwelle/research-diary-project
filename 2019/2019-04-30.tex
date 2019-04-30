@@ -210,9 +210,9 @@ and
     % \tag{Ent-ROTGAN}
     \label{eqn:anti-info-rotgan-bis}
     % \tag{AROTGAN}
-    \begin{array}{*2{>{\displaystyle}c}}
-        \min_{G} \min_{\gamma} \max_{Q_2} &\int_{\ZY}{ \bkt{c(G(z), y) + Q_2(z_2, y)}\d \gamma(z, y)}  + \eps \R(\gamma)- \lambda_2 \int_{\ZBX}{\exp{\frac{Q_2(z_2, y)}{\lambda_2}} \d \oprod{\zeta_2}{\nu}} \\
-                                          &+ \delta_{\set{\pf{G}{\zeta}}}\paren{ \pf{\proj{1}}{\pf{(G, \id)}{\gamma}} } + \delta_{set{\nu}}\paren{\pf{\projY}{\pf{(G, \id)}{\gamma}}}
+    \begin{array}{*2{>{\displaystyle}l}}
+        \min_{G} \min_{\gamma} \max_{Q_2} &\int_{\ZY}{ \bkt{c(G(z), y) + Q_2(z_2, y)}\d \gamma(z, y)}  + \eps \R(\gamma)- \lambda_2 \int_{\ZBX}{\exp{\frac{Q_2(z_2, y)}{\lambda_2}} \d \oprod{\zeta_2}{\nu}(z_2, y)} \\
+                                          &+ \delta_{\set{\pf{G}{\zeta}}}\paren{ \pf{\proj{1}}{\pf{(G, \id)}{\gamma}} } + \delta_{\set{\nu}}\paren{\pf{\projY}{\pf{(G, \id)}{\gamma}}}
                   \end{array}
 \end{equation}
 
@@ -346,6 +346,16 @@ The anti-informative variant of Sinkhorn loss-like $\SLace$ could be implemented
 \end{align}
     \end{itemize}
 \end{rems}
+
+% \input{2019-04-30/gaussian/anti-info/figure}
+% \input{2019-04-30/gaussian/anti-info/plots/figure}
+% \input{2019-04-30/mnist/anti-info/figure}
+% \input{2019-04-30/mnist/anti-info/plots/figure}
+% \input{2019-04-30/mnist/info/figure}
+% \input{2019-04-30/mnist/info/plots/figure}
+% \input{2019-04-30/celeba/fixed-cost/figure}
+% \input{2019-04-30/celeba/fixed-cost/info/figure}
+% \input{2019-04-30/celeba/learn-cost/figure}
 
 \printbibliography{}
 \end{document}
