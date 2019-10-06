@@ -6,14 +6,18 @@ Institution="$3"
 Name="$Year-Research-Diary"
 FileName=$Name".tex"
 tmpName=$Name".tmp"
+biblibFilePathAbsolute="$4"
 
 if [ -z "$Year" ]; then echo "ERROR: Year not specified."; exit; fi
 if [ -z "$Author" ]; then echo "ERROR: Author not specified."; exit; fi
 if [ -z "$Institution" ]; then echo "ERROR: Institution not specified."; exit; fi
+if [ -z "$biblibFilePathAbsolute" ]; then echo "ERROR: Path to bib-library not specified."; exit; fi
+
 
 echo "Research Diary"
 echo "User: $Author ($Institution)"
 echo "Year: $Year"
+echo "bibfile: $biblibFilePathAbsolute"
 
 path=`pwd`
 if [ "`basename $path`" == 'scripts' ]; then
@@ -36,6 +40,8 @@ echo "\newcommand{\userName}{$Author}" >> $FileName
 echo "\newcommand{\institution}{$Institution}" >> $FileName
 echo "\usepackage{include/research_diary}" >> $FileName
 echo "\usepackage{include/usrcmd}" >> $FileName
+echo "\bibliography{$biblibFilePathAbsolute}" >> $FileName
+
 echo " " >> $FileName
 echo "\title{Research Diary - $Year}" >> $FileName
 echo "\author{$Author}" >> $FileName
@@ -72,10 +78,17 @@ for i in $( ls $Year/$Year-*.tex ); do
     echo "\newpage" >> $tmpName
 done
 
-echo "75 following sed-error might not be an error:"
-
 #sed -i 's/\\begin{document}//g' $tmpName
 #sed -i 's/\\end{document}//g' $tmpName
+#@see http://www.admin-magazine.com/Archive/2015/28/Shell-practice-Introduction-to-the-sed-stream-editor/(offset)/6
+#@see https://stackoverflow.com/questions/5410757/delete-lines-in-a-text-file-that-contain-a-specific-string
+#@see https://stackoverflow.com/questions/5410757/delete-lines-in-a-text-file-that-contain-a-specific-string
+### we are on OSX in BSD Mode!
+sed -i '' '/\\begin{document}/d' $tmpName
+sed -i '' '/\\end{document}/d' $tmpName
+
+echo "81 following sed-error might not be an error:"
+
 sed -i 's/\\includegraphics\(.*\){\([A-Za-z0-9]*\)\/\([A-Za-z0-9_-]*\)/\\includegraphics\1{\3/g' $tmpName
 
 echo "81 following sed-error might not be an error:"
@@ -96,7 +109,7 @@ if [ "$Year" == '2010' ]; then
     sed -i 's/mcmaster_logo.png/mcmaster_logo.eps/g' 2010-Research-Diary.tex
 fi
 
-### possibly not needed anymore? (SH). 
+### possibly not needed anymore? (SH).
 if [ "`basename $path`" == 'scripts' ]; then
     cd scripts
 fi
