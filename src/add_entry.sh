@@ -38,12 +38,8 @@ cd $year
 filename=$year-$month-$day.tex
 
 if [ -f "$filename" ]; then
-    if [ -z "$force" ]; then
-        echo "A file called '$filename' already exists in diretory $year. Aborting addition of new entry."
-        exit
-    else
-        echo "Overriding existing '$filename'"
-    fi
+    echo "A file called '$filename' already exists in diretory $year. Aborting addition of new entry."
+    exit
 fi
 
 cp ../src/entry.tex $filename

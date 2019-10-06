@@ -41,3 +41,34 @@
 \newcommand{\pushright}[1]{\ifmeasuring@#1\else\omit\hfill$\displaystyle#1$\fi\ignorespaces}
 \newcommand{\pushleft}[1]{\ifmeasuring@#1\else\omit$\displaystyle#1$\hfill\fi\ignorespaces}
 \makeatother
+
+
+%%%%%%%%%%% quite mandatory area for literature etc %%%%
+
+
+\usepackage[%
+backend=biber,
+url=false,
+style=authoryear,
+maxnames=2,
+minnames=1,
+maxbibnames=99,
+giveninits,
+uniquename=init]{biblatex} % TODO: adapt citation style
+
+%%%%%%%%%%% mandatory area end %
+
+
+%%% nice links %%%
+\usepackage{hyperref}
+\hypersetup{
+% pdftitle={Research Diary},                    % title
+% pdfauthor={\userName $\;$ (\institution)},    % author
+% pdfsubject={Physics \& Astronomy},            % subject
+colorlinks=true,        % false: boxed links; true: colored links
+linkcolor=darkblue,     % color of internal links
+citecolor=green,        % color of links to bibliography
+filecolor=magenta,      % color of file links
+urlcolor=blue           % color of external links
+}
+%% end links %%
